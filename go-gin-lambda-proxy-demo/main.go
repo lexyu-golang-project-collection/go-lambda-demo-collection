@@ -2,8 +2,10 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
+	"runtime"
 
 	"github.com/aws/aws-lambda-go/events"
 	"github.com/aws/aws-lambda-go/lambda"
@@ -20,6 +22,8 @@ func Handler(ctx context.Context, req events.APIGatewayProxyRequest) (events.API
 
 func main() {
 	// stdout and stderr are sent to AWS CloudWatch Logs
+	fmt.Printf("OS: %s\nArchitecture: %s\n", runtime.GOOS, runtime.GOARCH)
+
 	log.Printf("Gin cold start")
 	r := gin.Default()
 	r.GET("/ping", func(c *gin.Context) {
@@ -36,5 +40,5 @@ func main() {
 	} else {
 		r.Run(":8080")
 	}
-	lambda.Start(Handler)
+	// lambda.Start(Handler)
 }

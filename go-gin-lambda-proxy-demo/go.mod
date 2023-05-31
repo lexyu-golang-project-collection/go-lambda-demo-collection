@@ -1,4 +1,4 @@
-module github.com/lexyu/lambda
+module github.com/lexyu/ginlambda
 
 go 1.19
 
